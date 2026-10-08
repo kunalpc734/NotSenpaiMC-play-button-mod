@@ -5,8 +5,6 @@ import app.enderlab.notsenpai_play_buttons.block.PlayButtonBlock;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -22,8 +20,12 @@ public class ModBlocks {
     public static final Block IRON_PLAY_BUTTON = registerBlock("iron_play_button",
             new PlayButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)));
 
+    public static final Block SILVER_PLAY_BUTTON = IRON_PLAY_BUTTON;
+
     public static final Block GOLDEN_PLAY_BUTTON = registerBlock("golden_play_button",
             new PlayButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GOLD_BLOCK)));
+
+    public static final Block GOLD_PLAY_BUTTON = GOLDEN_PLAY_BUTTON;
 
     public static final Block DIAMOND_PLAY_BUTTON = registerBlock("diamond_play_button",
             new PlayButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_BLOCK)));
@@ -35,16 +37,10 @@ public class ModBlocks {
             new PlayButtonBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.EMERALD_BLOCK)));
 
     private static Block registerBlock(String name, Block block) {
-        registerBlockItem(name, block);
         return Registry.register(BuiltInRegistries.BLOCK, ResourceLocation.fromNamespaceAndPath(NotSenpaiPlayButtons.MOD_ID, name), block);
     }
 
-    private static Item registerBlockItem(String name, Block block) {
-        return Registry.register(BuiltInRegistries.ITEM, ResourceLocation.fromNamespaceAndPath(NotSenpaiPlayButtons.MOD_ID, name),
-                new BlockItem(block, new Item.Properties()));
-    }
-
     public static void register() {
-        // Class loading trigger
+        // Static initialization
     }
 }
