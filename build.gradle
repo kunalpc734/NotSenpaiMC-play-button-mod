@@ -1,40 +1,36 @@
 plugins {
-    id 'fabric-loom' version '1.18.3'
-    id 'java'
+    id 'net.fabricmc.fabric-loom' version '1.18.3'
+    id 'maven-publish'
 }
 
-group = 'app.enderlab'
-version = '1.0.0'
-
-base {
-    archivesName = 'new-mod'
-}
+version = project.mod_version
+group = project.maven_group
 
 repositories {
+    maven { url "https://maven.fabricmc.net/" }
     mavenCentral()
 }
 
 dependencies {
-    minecraft 'com.mojang:minecraft:26.2'
-    mappings loom.officialMojangMappings()
-    modImplementation 'net.fabricmc:fabric-loader:0.19.5'
-    modImplementation 'net.fabricmc.fabric-api:fabric-api:0.161.0+26.2'
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 }
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(25)
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
     }
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8'
-    options.release = 25
+    it.options.release = 25
 }
 
-processResources {
-    inputs.property 'version', project.version
-    filesMatching('fabric.mod.json') {
-        expand 'version': project.version
-    }
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
 }
