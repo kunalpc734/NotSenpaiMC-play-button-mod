@@ -4,7 +4,6 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,7 +27,6 @@ public class PlayButtonBlock extends HorizontalDirectionalBlock implements Simpl
     public static final MapCodec<PlayButtonBlock> CODEC = simpleCodec(PlayButtonBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    /** Facing north, the plaque hugs the south wall of its own block space. */
     private static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 11.0D, 16.0D, 16.0D, 16.0D);
     private static final VoxelShape SHAPE_SOUTH = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 5.0D);
     private static final VoxelShape SHAPE_EAST = Block.box(0.0D, 0.0D, 0.0D, 5.0D, 16.0D, 16.0D);
@@ -98,18 +96,19 @@ public class PlayButtonBlock extends HorizontalDirectionalBlock implements Simpl
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader levelReader, LevelAccessor level, BlockPos pos,
-                                     Direction direction, BlockPos neighborPos, BlockState neighborState,
-                                     RandomSource random) {
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, 
+                                     LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
-            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
-        if (direction == state.getValue(FACING).getOpposite() && !state.canSurvive(levelReader, pos)) {
-            if (levelReader instanceof ServerLevel serverLevel) {
-                serverLevel.destroyBlock(pos, true);
+        if (direction == state.getValue(FACING).getOpposite() && level instanceof LevelReader levelReader) {
+            if (!state.canSurvive(levelReader, pos)) {
+                if (level instanceof ServerLevel serverLevel) {
+                    serverLevel.destroyBlock(pos, true);
+                }
+                return Blocks.AIR.defaultBlockState();
             }
-            return Blocks.AIR.defaultBlockState();
         }
-        return super.updateShape(state, levelReader, level, pos, direction, neighborPos, neighborState, random);
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
     }
 }
