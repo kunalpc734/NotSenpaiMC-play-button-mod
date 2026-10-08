@@ -22,13 +22,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.ticks.ScheduledTickAccess;
- * A thin, waterloggable, wall mounted award plaque.
- *
- * <p>The block can only be placed against the side of a solid block: {@code FACING} always points
- * away from the wall, so the front of the plaque faces out into the room. All four horizontal
- * directions are supported. If the supporting wall disappears the plaque breaks and drops itself.</p>
- */
+
 public class PlayButtonBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
     public static final MapCodec<PlayButtonBlock> CODEC = simpleCodec(PlayButtonBlock::new);
