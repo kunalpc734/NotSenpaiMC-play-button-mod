@@ -9,6 +9,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraft.world.ticks.ScheduledTickAccess;
 
 public class PlayButtonBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
@@ -98,18 +98,18 @@ public class PlayButtonBlock extends HorizontalDirectionalBlock implements Simpl
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
+    protected BlockState updateShape(BlockState state, LevelReader levelReader, LevelAccessor level, BlockPos pos,
                                      Direction direction, BlockPos neighborPos, BlockState neighborState,
                                      RandomSource random) {
         if (state.getValue(WATERLOGGED)) {
-            ticks.scheduleTick(pos, Fluids.WATER, 5);
+            level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(levelReader));
         }
-        if (direction == state.getValue(FACING).getOpposite() && !state.canSurvive(level, pos)) {
-            if (level instanceof ServerLevel serverLevel) {
+        if (direction == state.getValue(FACING).getOpposite() && !state.canSurvive(levelReader, pos)) {
+            if (levelReader instanceof ServerLevel serverLevel) {
                 serverLevel.destroyBlock(pos, true);
             }
             return Blocks.AIR.defaultBlockState();
         }
-        return super.updateShape(state, level, ticks, pos, direction, neighborPos, neighborState, random);
+        return super.updateShape(state, levelReader, level, pos, direction, neighborPos, neighborState, random);
     }
 }
