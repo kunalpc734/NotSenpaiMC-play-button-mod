@@ -1,15 +1,12 @@
 package app.enderlab.notsenpai_play_buttons.registry;
 
 import app.enderlab.notsenpai_play_buttons.NotSenpaiPlayButtons;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 
 public class ModCreativeTab {
@@ -38,6 +35,6 @@ public class ModCreativeTab {
     );
 
     public static void register() {
-        // Tab registered on static initialization
+        // Tab initialized via static field registration
     }
 }
