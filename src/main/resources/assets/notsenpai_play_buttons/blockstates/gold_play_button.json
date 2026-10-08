@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,waterlogged=false": { "model": "notsenpai_play_buttons:block/gold_play_button" },
+    "facing=north,waterlogged=true": { "model": "notsenpai_play_buttons:block/gold_play_button" },
+    "facing=east,waterlogged=false": { "model": "notsenpai_play_buttons:block/gold_play_button", "y": 90 },
+    "facing=east,waterlogged=true": { "model": "notsenpai_play_buttons:block/gold_play_button", "y": 90 },
+    "facing=south,waterlogged=false": { "model": "notsenpai_play_buttons:block/gold_play_button", "y": 180 },
+    "facing=south,waterlogged=true": { "model": "notsenpai_play_buttons:block/gold_play_button", "y": 180 },
+    "facing=west,waterlogged=false": { "model": "notsenpai_play_buttons:block/gold_play_button", "y": 270 },
+    "facing=west,waterlogged=true": { "model": "notsenpai_play_buttons:block/gold_play_button", "y": 270 }
+  }
+}

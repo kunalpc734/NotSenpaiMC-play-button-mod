@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "DD",
+    "DD",
+    " S"
+  ],
+  "key": {
+    "D": "minecraft:diamond",
+    "S": "minecraft:smooth_stone_slab"
+  },
+  "result": {
+    "id": "notsenpai_play_buttons:diamond_play_button",
+    "count": 1
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "notsenpai_play_buttons",
+  "version": "${version}",
+  "name": "NotSenpaiMC Creator Play Buttons",
+  "description": "Four decorative YouTube-style Creator Play Button plaques for NotSenpaiMC: Silver, Gold, Diamond and Ruby.",
+  "authors": [
+    "NotSenpaiMC"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "app.enderlab.notsenpai_play_buttons.NotSenpaiPlayButtons"
+    ],
+    "client": [
+      "app.enderlab.notsenpai_play_buttons.NotSenpaiPlayButtonsClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
+}
