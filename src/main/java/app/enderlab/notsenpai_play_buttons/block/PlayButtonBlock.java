@@ -24,7 +24,9 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PlayButtonBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
 
-    public static final MapCodec<PlayButtonBlock> CODEC = simpleCodec(PlayButtonBlock::new);
+    public static final MapCodec<PlayButtonBlock> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            instance.group(propertiesCodec()).apply(instance, PlayButtonBlock::new)
+    );
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static final VoxelShape SHAPE_NORTH = Block.box(0.0D, 0.0D, 11.0D, 16.0D, 16.0D, 16.0D);
@@ -39,6 +41,7 @@ public class PlayButtonBlock extends HorizontalDirectionalBlock implements Simpl
                 .setValue(WATERLOGGED, Boolean.FALSE));
     }
 
+    @Override
     public MapCodec<? extends PlayButtonBlock> codec() {
         return CODEC;
     }
