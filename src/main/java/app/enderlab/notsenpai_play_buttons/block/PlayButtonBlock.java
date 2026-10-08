@@ -39,8 +39,7 @@ public class PlayButtonBlock extends HorizontalDirectionalBlock implements Simpl
                 .setValue(WATERLOGGED, Boolean.FALSE));
     }
 
-    @Override
-    public MapCodec<? extends HorizontalDirectionalBlock> codec() {
+    public MapCodec<? extends PlayButtonBlock> codec() {
         return CODEC;
     }
 
