@@ -21,20 +21,20 @@ public class ModCreativeTab {
             PLAY_BUTTONS_KEY,
             CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
                     .title(Component.translatable("itemGroup.notsenpai_play_buttons.play_buttons_tab"))
-                    .icon(() -> new ItemStack(ModBlocks.WOODEN_PLAY_BUTTON_ITEM))
+                    .icon(() -> new ItemStack(ModBlocks.WOODEN_PLAY_BUTTON))
                     .displayItems((displayParameters, output) -> {
-                        output.accept(ModBlocks.WOODEN_PLAY_BUTTON_ITEM);
-                        output.accept(ModBlocks.STONE_PLAY_BUTTON_ITEM);
-                        output.accept(ModBlocks.IRON_PLAY_BUTTON_ITEM);
-                        output.accept(ModBlocks.GOLDEN_PLAY_BUTTON_ITEM);
-                        output.accept(ModBlocks.DIAMOND_PLAY_BUTTON_ITEM);
-                        output.accept(ModBlocks.NETHERITE_PLAY_BUTTON_ITEM);
-                        output.accept(ModBlocks.RUBY_PLAY_BUTTON_ITEM);
+                        output.accept(ModBlocks.WOODEN_PLAY_BUTTON);
+                        output.accept(ModBlocks.STONE_PLAY_BUTTON);
+                        output.accept(ModBlocks.IRON_PLAY_BUTTON);
+                        output.accept(ModBlocks.GOLDEN_PLAY_BUTTON);
+                        output.accept(ModBlocks.DIAMOND_PLAY_BUTTON);
+                        output.accept(ModBlocks.NETHERITE_PLAY_BUTTON);
+                        output.accept(ModBlocks.RUBY_PLAY_BUTTON);
                     })
                     .build()
     );
 
     public static void register() {
-        // Tab initialized via static field registration
+        // Static initialization
     }
 }
